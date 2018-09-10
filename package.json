@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "protobuf cli to create typescript declaration files for typescript schemas.",
   "main": "index.js",
+  "bin": {
+    "pbfts": "cli.js"
+  },
   "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
