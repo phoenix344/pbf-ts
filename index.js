@@ -194,27 +194,4 @@ async function writeSchemaFile(schema, opts = {}) {
     }
 }
 exports.writeSchemaFile = writeSchemaFile;
-const blah = createDefinition(`
-message Entry {
-
-    // public key
-    required bytes key = 1;
-
-    // signature
-    required bytes sig = 2;
-
-    // update time
-    required uint64 time = 3;
-
-    // domain name
-    required string name = 4;
-
-    // domain target (URI)
-    required string target = 5;
-}
-`);
-blah.forEach(({ filename, content }) => {
-    console.log(filename);
-    console.log(content);
-});
 //# sourceMappingURL=index.js.map
