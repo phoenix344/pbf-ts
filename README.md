@@ -1,2 +1,2 @@
 # pbf-ts
-protobuf cli for typescript
+**WIP:** This is just for simple formats. It converts proto schema files into interfaces.

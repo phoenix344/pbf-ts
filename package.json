@@ -1,0 +1,27 @@
+{
+  "name": "@netrunner/pbf-ts",
+  "version": "1.0.0",
+  "description": "protobuf cli to create typescript declaration files for typescript schemas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phoenix344/pbf-ts.git"
+  },
+  "keywords": [],
+  "author": "phoenix344",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phoenix344/pbf-ts/issues"
+  },
+  "homepage": "https://github.com/phoenix344/pbf-ts#readme",
+  "dependencies": {
+    "protobuf-schema": "^1.5.1"
+  },
+  "devDependencies": {
+    "@types/es6-promise": "^3.3.0",
+    "@types/node": "^10.9.4"
+  }
+}
