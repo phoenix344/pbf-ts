@@ -22,7 +22,7 @@ message C {
     required double x = 1;
     optional double y = 2;
 }
-`, {writeDir: 'test'});
+`, { writeDir: 'test' });
 
         assert.equal(readFileSync('test/A.ts').toString(), `import Pbf from "pbf";
 
@@ -106,37 +106,37 @@ export const C = {
     })(),
     (async function testWriteSchemaFileSync() {
         writeSchemaFileSync(`
-message A {
+message D {
     required int32 a = 1;
     optional int32 b = 2;
 }
-message B {
+message E {
     required string username = 1;
     required bool active = 2;
 }
-message C {
+message F {
     required double x = 1;
     optional double y = 2;
 }
-`, {writeDir: 'test'});
+`, { writeDir: 'test' });
 
-        assert.equal(readFileSync('test/A.ts').toString(), `import Pbf from "pbf";
+        assert.equal(readFileSync('test/D.ts').toString(), `import Pbf from "pbf";
 
-export interface ASchema {
+export interface DSchema {
     a: number;
     b?: number;
 }
 
-export const A = {
-    decode(buf: Buffer | Uint8Array): ASchema {
+export const D = {
+    decode(buf: Buffer | Uint8Array): DSchema {
         const pbf = new Pbf(buf);
-        return pbf.readFields<ASchema>((tag: number, obj?: ASchema, pbf?: Pbf) => {
+        return pbf.readFields<DSchema>((tag: number, obj?: DSchema, pbf?: Pbf) => {
             if (tag === 1 && obj && pbf) { obj.a = pbf.readVarint(); }
             else if (tag === 2 && obj && pbf) { obj.b = pbf.readVarint(); }
         }, { a: 0, b: 0 });
     },
 
-    encode(obj: ASchema): Uint8Array {
+    encode(obj: DSchema): Uint8Array {
         const pbf = new Pbf();
         if (obj.a) { pbf.writeVarintField(1, obj.a); }
         if (obj.b) { pbf.writeVarintField(2, obj.b); }
@@ -145,23 +145,23 @@ export const A = {
     }
 };`);
 
-        assert.equal(readFileSync('test/B.ts').toString(), `import Pbf from "pbf";
+        assert.equal(readFileSync('test/E.ts').toString(), `import Pbf from "pbf";
 
-export interface BSchema {
+export interface ESchema {
     username: string;
     active: boolean;
 }
 
-export const B = {
-    decode(buf: Buffer | Uint8Array): BSchema {
+export const E = {
+    decode(buf: Buffer | Uint8Array): ESchema {
         const pbf = new Pbf(buf);
-        return pbf.readFields<BSchema>((tag: number, obj?: BSchema, pbf?: Pbf) => {
+        return pbf.readFields<ESchema>((tag: number, obj?: ESchema, pbf?: Pbf) => {
             if (tag === 1 && obj && pbf) { obj.username = pbf.readString(); }
             else if (tag === 2 && obj && pbf) { obj.active = pbf.readBoolean(); }
         }, { username: "", active: false });
     },
 
-    encode(obj: BSchema): Uint8Array {
+    encode(obj: ESchema): Uint8Array {
         const pbf = new Pbf();
         if (obj.username) { pbf.writeStringField(1, obj.username); }
         if (obj.active) { pbf.writeBooleanField(2, obj.active); }
@@ -170,23 +170,23 @@ export const B = {
     }
 };`);
 
-        assert.equal(readFileSync('test/C.ts').toString(), `import Pbf from "pbf";
+        assert.equal(readFileSync('test/F.ts').toString(), `import Pbf from "pbf";
 
-export interface CSchema {
+export interface FSchema {
     x: number;
     y?: number;
 }
 
-export const C = {
-    decode(buf: Buffer | Uint8Array): CSchema {
+export const F = {
+    decode(buf: Buffer | Uint8Array): FSchema {
         const pbf = new Pbf(buf);
-        return pbf.readFields<CSchema>((tag: number, obj?: CSchema, pbf?: Pbf) => {
+        return pbf.readFields<FSchema>((tag: number, obj?: FSchema, pbf?: Pbf) => {
             if (tag === 1 && obj && pbf) { obj.x = pbf.readDouble(); }
             else if (tag === 2 && obj && pbf) { obj.y = pbf.readDouble(); }
         }, { x: 0, y: 0 });
     },
 
-    encode(obj: CSchema): Uint8Array {
+    encode(obj: FSchema): Uint8Array {
         const pbf = new Pbf();
         if (obj.x) { pbf.writeDoubleField(1, obj.x); }
         if (obj.y) { pbf.writeDoubleField(2, obj.y); }
@@ -195,9 +195,9 @@ export const C = {
     }
 };`);
 
-        unlinkSync('test/A.ts');
-        unlinkSync('test/B.ts');
-        unlinkSync('test/C.ts');
+        unlinkSync('test/D.ts');
+        unlinkSync('test/E.ts');
+        unlinkSync('test/F.ts');
 
     })()
 ];

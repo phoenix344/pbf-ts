@@ -87,9 +87,9 @@ export function createDefinition(schema: string | Buffer, opts: SchemaOptions = 
 export function writeSchemaFileSync(schema: string | Buffer, opts: SchemaOptions = {}): void {
     const defs = createDefinition(schema, opts);
     const writeDir = opts.writeDir ? opts.writeDir : '';
-    defs.forEach(({ filename, content }) => {
+    for (const { filename, content } of defs) {
         writeFileSync(join(writeDir, filename), content);
-    });
+    }
 }
 
 export async function writeSchemaFile(schema: string | Buffer, opts: SchemaOptions = {}): Promise<void> {
