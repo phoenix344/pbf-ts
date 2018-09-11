@@ -1,0 +1,4 @@
+message X {
+    required double a = 1;
+    optional float b = 2;
+}
