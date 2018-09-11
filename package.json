@@ -1,14 +1,14 @@
 {
   "name": "@netrunner/pbf-ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "protobuf cli to create typescript declaration files for typescript schemas.",
   "main": "index.js",
+  "types": "index.d.ts",
   "bin": {
     "pbfts": "cli.js"
   },
-  "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/es6-promise": "^3.3.0",
-    "@types/node": "^10.9.4"
+    "@types/node": "^10.9.4",
+    "@types/pbf": "^3.0.0"
   }
 }

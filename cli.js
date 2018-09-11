@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 const { readFile } = require('fs');
+const { join } = require('path')
 const { writeSchemaFile } = require('./index');
-const files = process.argv.slice(2);
+let [source, target, ...files] = process.argv.slice(2);
 
-if (!files.length) {
-    console.log('pbf-ts file1.proto file2.proto ...');
+if (!source || !target || !files || !files.length) {
+    console.log('pbfts <source dir> <target dir> <pbf file 1> <pbf file 2> ...');
+    console.log('example: pbfts ./src ./lib file1.proto file2.proto');
     return;
 }
 
@@ -18,7 +20,7 @@ function readFileAsync(filename) {
 }
 
 (async () => {
-    const content = await files.map(file => readFileAsync(file));
+    const content = await files.map(file => readFileAsync(join(source, file)));
     await content.map(cnt => writeSchemaFile(cnt));
 });
 

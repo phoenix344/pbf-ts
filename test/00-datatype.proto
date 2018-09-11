@@ -1,0 +1,18 @@
+
+message DataTypes {
+    required double a = 1;
+    required float b = 2;
+    required int32 c = 3;
+    required int64 d = 4;
+    required sint32 e = 5;
+    required sint64 f = 6;
+    required uint32 g = 7;
+    required uint64 h = 8;
+    required fixed32 i = 9;
+    required fixed64 j = 10;
+    required sfixed32 k = 11;
+    required sfixed64 l = 12;
+    required bool m = 13;
+    required string n = 14;
+    required bytes o = 15;
+}
