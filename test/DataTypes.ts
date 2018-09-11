@@ -18,8 +18,7 @@ export interface DataTypesSchema {
     o: Uint8Array;
 }
 
-export class DataTypes {
-    constructor() {}
+export const DataTypes = {
     decode(buf: Buffer | Uint8Array) {
         const pbf = new Pbf(buf);
         return pbf.readFields<DataTypesSchema>((tag: number, obj?: DataTypesSchema, pbf?: Pbf) => {
@@ -39,7 +38,7 @@ export class DataTypes {
             else if (tag === 14 && obj && pbf) { obj.n = pbf.readString(); }
             else if (tag === 15 && obj && pbf) { obj.o = pbf.readBytes(); }
         }, { a: 0, b: 0, c: 0, d: 0, e: 0, f: 0, g: 0, h: 0, i: 0, j: 0, k: 0, l: 0, m: false, n: "", o: new Uint8Array(0) });
-    }
+    },
 
     encode(obj: DataTypesSchema) {
         const pbf = new Pbf();
@@ -61,4 +60,4 @@ export class DataTypes {
         const buffer = pbf.finish();
         return buffer;
     }
-}
+};

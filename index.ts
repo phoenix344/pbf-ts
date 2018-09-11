@@ -54,14 +54,13 @@ export function createDefinition(schema: string | Buffer, opts: SchemaOptions = 
         iface.push('}');
 
         const cls = [
-            `export class ${msg.name} {`,
-            options.indent + 'constructor() {}',
+            `export const ${msg.name} = {`,
             options.indent + `decode(buf: Buffer | Uint8Array) {`,
             options.indent + options.indent + `const pbf = new Pbf(buf);`,
             options.indent + options.indent + `return pbf.readFields<${msg.name}${options.suffix}>((tag: number, obj?: ${msg.name}${options.suffix}, pbf?: Pbf) => {`,
             options.indent + options.indent + readField.join(options.lineBreak + options.indent + options.indent),
             options.indent + options.indent + `}, { ${read.join(', ')} });`,
-            options.indent + '}' + options.lineBreak,
+            options.indent + '},' + options.lineBreak,
 
             options.indent + `encode(obj: ${msg.name}${options.suffix}) {`,
             options.indent + options.indent + 'const pbf = new Pbf();',
@@ -69,7 +68,7 @@ export function createDefinition(schema: string | Buffer, opts: SchemaOptions = 
             options.indent + options.indent + 'const buffer = pbf.finish();',
             options.indent + options.indent + 'return buffer;',
             options.indent + '}',
-            '}'
+            '};'
         ];
 
         files.push({
