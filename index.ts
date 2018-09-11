@@ -55,14 +55,14 @@ export function createDefinition(schema: string | Buffer, opts: SchemaOptions = 
 
         const cls = [
             `export const ${msg.name} = {`,
-            options.indent + `decode(buf: Buffer | Uint8Array) {`,
+            options.indent + `decode(buf: Buffer | Uint8Array): ${msg.name}${options.suffix} {`,
             options.indent + options.indent + `const pbf = new Pbf(buf);`,
             options.indent + options.indent + `return pbf.readFields<${msg.name}${options.suffix}>((tag: number, obj?: ${msg.name}${options.suffix}, pbf?: Pbf) => {`,
             options.indent + options.indent + readField.join(options.lineBreak + options.indent + options.indent),
             options.indent + options.indent + `}, { ${read.join(', ')} });`,
             options.indent + '},' + options.lineBreak,
 
-            options.indent + `encode(obj: ${msg.name}${options.suffix}) {`,
+            options.indent + `encode(obj: ${msg.name}${options.suffix}): Uint8Array {`,
             options.indent + options.indent + 'const pbf = new Pbf();',
             options.indent + write.join(options.lineBreak + options.indent),
             options.indent + options.indent + 'const buffer = pbf.finish();',

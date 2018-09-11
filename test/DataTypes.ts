@@ -19,7 +19,7 @@ export interface DataTypesSchema {
 }
 
 export const DataTypes = {
-    decode(buf: Buffer | Uint8Array) {
+    decode(buf: Buffer | Uint8Array): DataTypesSchema {
         const pbf = new Pbf(buf);
         return pbf.readFields<DataTypesSchema>((tag: number, obj?: DataTypesSchema, pbf?: Pbf) => {
             if (tag === 1 && obj && pbf) { obj.a = pbf.readDouble(); }
@@ -40,7 +40,7 @@ export const DataTypes = {
         }, { a: 0, b: 0, c: 0, d: 0, e: 0, f: 0, g: 0, h: 0, i: 0, j: 0, k: 0, l: 0, m: false, n: "", o: new Uint8Array(0) });
     },
 
-    encode(obj: DataTypesSchema) {
+    encode(obj: DataTypesSchema): Uint8Array {
         const pbf = new Pbf();
         if (obj.a) { pbf.writeDoubleField(1, obj.a); }
         if (obj.b) { pbf.writeFloatField(2, obj.b); }
