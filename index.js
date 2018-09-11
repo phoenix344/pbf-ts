@@ -62,7 +62,8 @@ async function writeSchemaFile(schema, opts = {}) {
     const defs = createDefinition(schema, opts);
     const writeDir = opts.writeDir ? opts.writeDir : '';
     try {
-        await defs.map(({ filename, content }) => util_1.writeAsync(path_1.join(writeDir, filename), content));
+        const promises = defs.map(({ filename, content }) => util_1.writeAsync(path_1.join(writeDir, filename), content));
+        await Promise.all(promises);
     }
     catch (err) {
         throw err;

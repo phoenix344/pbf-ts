@@ -96,7 +96,8 @@ export async function writeSchemaFile(schema: string | Buffer, opts: SchemaOptio
     const defs = createDefinition(schema, opts);
     const writeDir = opts.writeDir ? opts.writeDir : '';
     try {
-        await defs.map<Promise<void>>(({ filename, content }) => writeAsync(join(writeDir, filename), content));
+        const promises = defs.map<Promise<void>>(({ filename, content }) => writeAsync(join(writeDir, filename), content));
+        await Promise.all(promises);
     } catch (err) {
         throw err;
     }

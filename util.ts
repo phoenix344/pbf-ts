@@ -1,4 +1,4 @@
-const { writeFile } = require('fs');
+const { writeFile, readFile } = require('fs');
 
 export function getValues(field: {type: string}): string {
     switch (field.type) {
@@ -131,6 +131,15 @@ export function writeAsync(filename: string, content: string): Promise<void> {
         writeFile(filename, content, (err: Error) => {
             if (err) return reject(err);
             resolve();
+        });
+    });
+}
+
+export function readAsync(filename: string): Promise<Buffer> {
+    return new Promise<Buffer>((resolve, reject) => {
+        readFile(filename, (err: Error, data: Buffer) => {
+            if (err) return reject(err);
+            resolve(data);
         });
     });
 }

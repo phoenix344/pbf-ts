@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const { writeFile } = require('fs');
+const { writeFile, readFile } = require('fs');
 function getValues(field) {
     switch (field.type) {
         case 'double':
@@ -137,4 +137,14 @@ function writeAsync(filename, content) {
     });
 }
 exports.writeAsync = writeAsync;
+function readAsync(filename) {
+    return new Promise((resolve, reject) => {
+        readFile(filename, (err, data) => {
+            if (err)
+                return reject(err);
+            resolve(data);
+        });
+    });
+}
+exports.readAsync = readAsync;
 //# sourceMappingURL=util.js.map
