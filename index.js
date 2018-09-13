@@ -35,7 +35,7 @@ function createDefinition(schema, opts = {}) {
             options.indent + options.indent + 'const pbf = new Pbf();',
             options.indent + write.join(options.lineBreak + options.indent),
             options.indent + options.indent + 'const buffer = pbf.finish();',
-            options.indent + options.indent + 'return buffer;',
+            options.indent + options.indent + 'return Buffer.from(buffer);',
             options.indent + '}',
             '};'
         ];
