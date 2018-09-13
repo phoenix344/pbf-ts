@@ -53,9 +53,9 @@ exports.createDefinition = createDefinition;
 function writeSchemaFileSync(schema, opts = {}) {
     const defs = createDefinition(schema, opts);
     const writeDir = opts.writeDir ? opts.writeDir : '';
-    defs.forEach(({ filename, content }) => {
+    for (const { filename, content } of defs) {
         writeFileSync(path_1.join(writeDir, filename), content);
-    });
+    }
 }
 exports.writeSchemaFileSync = writeSchemaFileSync;
 async function writeSchemaFile(schema, opts = {}) {

@@ -36,7 +36,7 @@ export function createDefinition(schema: string | Buffer, opts: SchemaOptions = 
         const iface = [
             `export interface ${msg.name}${options.suffix} {`,
         ];
-
+        
         const read: string[] = [];
         const readField: string[] = [];
         const write: string[] = [];
