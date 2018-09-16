@@ -1,6 +1,6 @@
 {
   "name": "@netrunner/pbf-ts",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "protobuf cli to create typescript declaration files for typescript schemas.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/phoenix344/pbf-ts.git"
   },
-  "keywords": [],
+  "keywords": ["protobuf", "pbf", "typescript"],
   "author": "phoenix344",
   "license": "MIT",
   "bugs": {
