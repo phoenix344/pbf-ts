@@ -58,6 +58,6 @@ export const DataTypes = {
         if (obj.n) { pbf.writeStringField(14, obj.n); }
         if (obj.o) { pbf.writeBytesField(15, obj.o); }
         const buffer = pbf.finish();
-        return buffer;
+        return Buffer.from(buffer);
     }
 };

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
+const { join } = require('path');
+const { writeSchemaFile } = require('./index');
+const { readAsync } = require('./util');
 
 (async () => {
-    const { join } = require('path')
-    const { writeSchemaFile } = require('./index');
-    const { readAsync } = require('./util');
     let [source, target, ...files] = process.argv.slice(2);
 
     if (!source || !target || !files || !files.length) {
@@ -14,9 +14,8 @@
 
     try {
         const content = await Promise.all(files.map(file => readAsync(join(source, file))));
-        console.log(content[0].toString());
         await Promise.all(content.map(cnt => writeSchemaFile(cnt, { writeDir: target })));
-        console.log('done!');
+        console.log('ヾ(⌐■_■)ノ♪ done!');
         process.exit();
     } catch (err) {
         console.error(`(ノಠ益ಠ)ノ彡┻━┻`);
