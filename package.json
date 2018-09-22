@@ -1,6 +1,6 @@
 {
   "name": "@netrunner/pbf-ts",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "protobuf cli to create typescript declaration files for typescript schemas.",
   "main": "index.js",
   "types": "index.d.ts",

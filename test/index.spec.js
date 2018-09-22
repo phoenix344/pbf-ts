@@ -35,8 +35,10 @@ export const A = {
     decode(buf: Buffer | Uint8Array): ASchema {
         const pbf = new Pbf(buf);
         return pbf.readFields<ASchema>((tag: number, obj?: ASchema, pbf?: Pbf) => {
-            if (tag === 1 && obj && pbf) { obj.a = pbf.readVarint(); }
-            else if (tag === 2 && obj && pbf) { obj.b = pbf.readVarint(); }
+            if (obj) {
+                if (tag === 1 && 'undefined' !== typeof obj.a && pbf) { obj.a = pbf.readVarint(); }
+                else if (tag === 2 && 'undefined' !== typeof obj.b && pbf) { obj.b = pbf.readVarint(); }
+            }
         }, { a: 0, b: 0 });
     },
 
@@ -45,7 +47,7 @@ export const A = {
         if (obj.a) { pbf.writeVarintField(1, obj.a); }
         if (obj.b) { pbf.writeVarintField(2, obj.b); }
         const buffer = pbf.finish();
-        return buffer;
+        return Buffer.from(buffer);
     }
 };`);
 
@@ -60,8 +62,10 @@ export const B = {
     decode(buf: Buffer | Uint8Array): BSchema {
         const pbf = new Pbf(buf);
         return pbf.readFields<BSchema>((tag: number, obj?: BSchema, pbf?: Pbf) => {
-            if (tag === 1 && obj && pbf) { obj.username = pbf.readString(); }
-            else if (tag === 2 && obj && pbf) { obj.active = pbf.readBoolean(); }
+            if (obj) {
+                if (tag === 1 && 'undefined' !== typeof obj.username && pbf) { obj.username = pbf.readString(); }
+                else if (tag === 2 && 'undefined' !== typeof obj.active && pbf) { obj.active = pbf.readBoolean(); }
+            }
         }, { username: "", active: false });
     },
 
@@ -70,7 +74,7 @@ export const B = {
         if (obj.username) { pbf.writeStringField(1, obj.username); }
         if (obj.active) { pbf.writeBooleanField(2, obj.active); }
         const buffer = pbf.finish();
-        return buffer;
+        return Buffer.from(buffer);
     }
 };`);
 
@@ -85,8 +89,10 @@ export const C = {
     decode(buf: Buffer | Uint8Array): CSchema {
         const pbf = new Pbf(buf);
         return pbf.readFields<CSchema>((tag: number, obj?: CSchema, pbf?: Pbf) => {
-            if (tag === 1 && obj && pbf) { obj.x = pbf.readDouble(); }
-            else if (tag === 2 && obj && pbf) { obj.y = pbf.readDouble(); }
+            if (obj) {
+                if (tag === 1 && 'undefined' !== typeof obj.x && pbf) { obj.x = pbf.readDouble(); }
+                else if (tag === 2 && 'undefined' !== typeof obj.y && pbf) { obj.y = pbf.readDouble(); }
+            }
         }, { x: 0, y: 0 });
     },
 
@@ -95,7 +101,7 @@ export const C = {
         if (obj.x) { pbf.writeDoubleField(1, obj.x); }
         if (obj.y) { pbf.writeDoubleField(2, obj.y); }
         const buffer = pbf.finish();
-        return buffer;
+        return Buffer.from(buffer);
     }
 };`);
 
@@ -131,8 +137,10 @@ export const D = {
     decode(buf: Buffer | Uint8Array): DSchema {
         const pbf = new Pbf(buf);
         return pbf.readFields<DSchema>((tag: number, obj?: DSchema, pbf?: Pbf) => {
-            if (tag === 1 && obj && pbf) { obj.a = pbf.readVarint(); }
-            else if (tag === 2 && obj && pbf) { obj.b = pbf.readVarint(); }
+            if (obj) {
+                if (tag === 1 && 'undefined' !== typeof obj.a && pbf) { obj.a = pbf.readVarint(); }
+                else if (tag === 2 && 'undefined' !== typeof obj.b && pbf) { obj.b = pbf.readVarint(); }
+            }
         }, { a: 0, b: 0 });
     },
 
@@ -141,7 +149,7 @@ export const D = {
         if (obj.a) { pbf.writeVarintField(1, obj.a); }
         if (obj.b) { pbf.writeVarintField(2, obj.b); }
         const buffer = pbf.finish();
-        return buffer;
+        return Buffer.from(buffer);
     }
 };`);
 
@@ -156,8 +164,10 @@ export const E = {
     decode(buf: Buffer | Uint8Array): ESchema {
         const pbf = new Pbf(buf);
         return pbf.readFields<ESchema>((tag: number, obj?: ESchema, pbf?: Pbf) => {
-            if (tag === 1 && obj && pbf) { obj.username = pbf.readString(); }
-            else if (tag === 2 && obj && pbf) { obj.active = pbf.readBoolean(); }
+            if (obj) {
+                if (tag === 1 && 'undefined' !== typeof obj.username && pbf) { obj.username = pbf.readString(); }
+                else if (tag === 2 && 'undefined' !== typeof obj.active && pbf) { obj.active = pbf.readBoolean(); }
+            }
         }, { username: "", active: false });
     },
 
@@ -166,7 +176,7 @@ export const E = {
         if (obj.username) { pbf.writeStringField(1, obj.username); }
         if (obj.active) { pbf.writeBooleanField(2, obj.active); }
         const buffer = pbf.finish();
-        return buffer;
+        return Buffer.from(buffer);
     }
 };`);
 
@@ -181,8 +191,10 @@ export const F = {
     decode(buf: Buffer | Uint8Array): FSchema {
         const pbf = new Pbf(buf);
         return pbf.readFields<FSchema>((tag: number, obj?: FSchema, pbf?: Pbf) => {
-            if (tag === 1 && obj && pbf) { obj.x = pbf.readDouble(); }
-            else if (tag === 2 && obj && pbf) { obj.y = pbf.readDouble(); }
+            if (obj) {
+                if (tag === 1 && 'undefined' !== typeof obj.x && pbf) { obj.x = pbf.readDouble(); }
+                else if (tag === 2 && 'undefined' !== typeof obj.y && pbf) { obj.y = pbf.readDouble(); }
+            }
         }, { x: 0, y: 0 });
     },
 
@@ -191,7 +203,7 @@ export const F = {
         if (obj.x) { pbf.writeDoubleField(1, obj.x); }
         if (obj.y) { pbf.writeDoubleField(2, obj.y); }
         const buffer = pbf.finish();
-        return buffer;
+        return Buffer.from(buffer);
     }
 };`);
 

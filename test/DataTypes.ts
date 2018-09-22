@@ -22,21 +22,23 @@ export const DataTypes = {
     decode(buf: Buffer | Uint8Array): DataTypesSchema {
         const pbf = new Pbf(buf);
         return pbf.readFields<DataTypesSchema>((tag: number, obj?: DataTypesSchema, pbf?: Pbf) => {
-            if (tag === 1 && obj && pbf) { obj.a = pbf.readDouble(); }
-            else if (tag === 2 && obj && pbf) { obj.b = pbf.readFloat(); }
-            else if (tag === 3 && obj && pbf) { obj.c = pbf.readVarint(); }
-            else if (tag === 4 && obj && pbf) { obj.d = pbf.readVarint(); }
-            else if (tag === 5 && obj && pbf) { obj.e = pbf.readSVarint(); }
-            else if (tag === 6 && obj && pbf) { obj.f = pbf.readSVarint(); }
-            else if (tag === 7 && obj && pbf) { obj.g = pbf.readVarint(); }
-            else if (tag === 8 && obj && pbf) { obj.h = pbf.readVarint(); }
-            else if (tag === 9 && obj && pbf) { obj.i = pbf.readFixed32(); }
-            else if (tag === 10 && obj && pbf) { obj.j = pbf.readFixed64(); }
-            else if (tag === 11 && obj && pbf) { obj.k = pbf.readSFixed32(); }
-            else if (tag === 12 && obj && pbf) { obj.l = pbf.readSFixed64(); }
-            else if (tag === 13 && obj && pbf) { obj.m = pbf.readBoolean(); }
-            else if (tag === 14 && obj && pbf) { obj.n = pbf.readString(); }
-            else if (tag === 15 && obj && pbf) { obj.o = pbf.readBytes(); }
+            if (obj) {
+                if (tag === 1 && 'undefined' !== typeof obj.a && pbf) { obj.a = pbf.readDouble(); }
+                else if (tag === 2 && 'undefined' !== typeof obj.b && pbf) { obj.b = pbf.readFloat(); }
+                else if (tag === 3 && 'undefined' !== typeof obj.c && pbf) { obj.c = pbf.readVarint(); }
+                else if (tag === 4 && 'undefined' !== typeof obj.d && pbf) { obj.d = pbf.readVarint(); }
+                else if (tag === 5 && 'undefined' !== typeof obj.e && pbf) { obj.e = pbf.readSVarint(); }
+                else if (tag === 6 && 'undefined' !== typeof obj.f && pbf) { obj.f = pbf.readSVarint(); }
+                else if (tag === 7 && 'undefined' !== typeof obj.g && pbf) { obj.g = pbf.readVarint(); }
+                else if (tag === 8 && 'undefined' !== typeof obj.h && pbf) { obj.h = pbf.readVarint(); }
+                else if (tag === 9 && 'undefined' !== typeof obj.i && pbf) { obj.i = pbf.readFixed32(); }
+                else if (tag === 10 && 'undefined' !== typeof obj.j && pbf) { obj.j = pbf.readFixed64(); }
+                else if (tag === 11 && 'undefined' !== typeof obj.k && pbf) { obj.k = pbf.readSFixed32(); }
+                else if (tag === 12 && 'undefined' !== typeof obj.l && pbf) { obj.l = pbf.readSFixed64(); }
+                else if (tag === 13 && 'undefined' !== typeof obj.m && pbf) { obj.m = pbf.readBoolean(); }
+                else if (tag === 14 && 'undefined' !== typeof obj.n && pbf) { obj.n = pbf.readString(); }
+                else if (tag === 15 && 'undefined' !== typeof obj.o && pbf) { obj.o = pbf.readBytes(); }
+            }
         }, { a: 0, b: 0, c: 0, d: 0, e: 0, f: 0, g: 0, h: 0, i: 0, j: 0, k: 0, l: 0, m: false, n: "", o: new Uint8Array(0) });
     },
 
