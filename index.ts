@@ -46,7 +46,7 @@ export function createDefinition(schema: string | Buffer, opts: SchemaOptions = 
             read.push(f.name + ': ' + getValues(f));
 
             const rflen = readField.length
-            readField.push(options.indent + (rflen ? 'else if' : 'if') + ` (tag === ${f.tag} && obj && pbf) { obj.${f.name} = ${getReader(f)}; }`);
+            readField.push(options.indent + (rflen ? 'else if' : 'if') + ` (tag === ${f.tag} && 'undefined' !== typeof obj.${f.name} && pbf) { obj.${f.name} = ${getReader(f)}; }`);
 
             write.push(options.indent + `if (obj.${f.name}) { ${getWriter(f)}; }`);
         });
