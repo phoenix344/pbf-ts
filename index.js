@@ -19,7 +19,7 @@ function createDefinition(schema, opts = {}) {
             iface.push(options.indent + f.name + (f.required ? '' : '?') + ': ' + util_1.getType(f) + (f.repeated ? '[]' : '') + ';');
             read.push(f.name + ': ' + util_1.getValues(f));
             const rflen = readField.length;
-            readField.push(options.indent + (rflen ? 'else if' : 'if') + ` (tag === ${f.tag} && obj && pbf) { obj.${f.name} = ${util_1.getReader(f)}; }`);
+            readField.push(options.indent + (rflen ? 'else if' : 'if') + ` (tag === ${f.tag} && 'undefined' !== typeof obj.${f.name} && pbf) { obj.${f.name} = ${util_1.getReader(f)}; }`);
             write.push(options.indent + `if (obj.${f.name}) { ${util_1.getWriter(f)}; }`);
         });
         iface.push('}');
